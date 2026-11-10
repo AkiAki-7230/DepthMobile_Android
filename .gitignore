@@ -1,0 +1,35 @@
+# ---- 构建产物 ----
+build/
+.cxx/
+.gradle/
+.gradle-*/
+.kotlin/
+*.iml
+
+# ---- 本机配置（含 SDK 路径，不应入库）----
+local.properties
+
+# ---- IDE ----
+.idea/
+
+# ---- 大文件与历史备份 ----
+recovery_backups/
+.codex-recovery/
+releases/*.apk
+*.apk
+
+# ---- 杂项 ----
+.DS_Store
+__pycache__/
+*.pyc
+.android-user/
+
+# ---- OpenCV 预编译库（约 510 MB，按 README 说明自行下载）----
+sdk/native/libs/
+sdk/native/staticlibs/
+sdk/native/3rdparty/
+sdk/etc/
+
+# ---- OpenCV 测试程序与生成文档（构建不需要）----
+sdk/native/bin/
+sdk/java/javadoc/

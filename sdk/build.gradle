@@ -1,0 +1,209 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'kotlin-android'
+
+
+def openCVersionName = "4.10.0"
+def openCVersionCode = 41000
+
+
+android {
+
+    namespace 'org.opencv'
+
+    compileSdk 36
+
+
+    defaultConfig {
+
+        minSdk 26
+
+        targetSdk 36
+
+
+        ndk {
+
+            abiFilters "arm64-v8a"
+
+        }
+
+
+        externalNativeBuild {
+
+            cmake {
+
+                arguments "-DANDROID_STL=c++_shared"
+
+                targets "opencv_jni_shared"
+
+            }
+
+        }
+
+    }
+
+
+
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_11
+
+        targetCompatibility JavaVersion.VERSION_11
+
+    }
+
+
+    kotlinOptions {
+
+        jvmTarget = "11"
+
+    }
+
+    buildTypes {
+
+
+        debug {
+
+            packagingOptions {
+
+                doNotStrip '**/*.so'
+
+            }
+
+        }
+
+
+
+        release {
+
+            packagingOptions {
+
+                doNotStrip '**/*.so'
+
+            }
+
+
+            minifyEnabled false
+
+
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android.txt'
+            ),
+                    'proguard-rules.txt'
+
+        }
+
+    }
+
+
+
+    buildFeatures {
+
+        prefabPublishing true
+
+        buildConfig true
+
+    }
+
+
+
+    prefab {
+
+        opencv_jni_shared {
+
+            headers "native/jni/include"
+
+        }
+
+    }
+
+
+
+    sourceSets {
+
+
+        main {
+
+            jniLibs.srcDirs = ['native/libs']
+
+            java.srcDirs = ['java/src']
+
+            res.srcDirs = ['java/res']
+
+            manifest.srcFile 'java/AndroidManifest.xml'
+
+        }
+
+    }
+
+
+
+    publishing {
+
+        singleVariant('release') {
+
+            withSourcesJar()
+
+            withJavadocJar()
+
+        }
+
+    }
+
+
+
+    externalNativeBuild {
+
+
+        cmake {
+
+            path (
+                    project.projectDir.toString()
+                            +
+                            '/libcxx_helper/CMakeLists.txt'
+            )
+
+        }
+
+    }
+
+}
+
+
+
+
+publishing {
+
+
+    publications {
+
+
+        release(MavenPublication) {
+
+
+            groupId='org.opencv'
+
+            artifactId='opencv'
+
+            version='4.10.0'
+
+
+            afterEvaluate {
+
+                from components.release
+
+            }
+
+
+        }
+
+    }
+
+
+}
+
+
+
+dependencies {
+
+}

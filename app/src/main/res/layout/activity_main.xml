@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <com.example.depthmobile.view.DepthOverlayView
+        android:id="@+id/depthOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- 标定入口按钮 -->
+    <Button
+        android:id="@+id/btnCalibration"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:text="标定"
+        android:textSize="12sp"
+        android:backgroundTint="#FF6B00"
+        android:elevation="4dp"/>
+
+</FrameLayout>
