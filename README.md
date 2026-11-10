@@ -81,3 +81,31 @@ python tools/calibrate_depth_scale.py depth_samples.csv `
 ## 使用边界
 
 本项目面向行人的辅助避障，不是完整的道路导航系统，也不能替代视力、导盲杖、专业无障碍设备或人工判断。单目深度会受暗光、透明/反光物体、细杆、运动模糊、遮挡和模型域偏移影响；在楼梯、车流和复杂路口等高风险场景中必须保留其他安全手段。
+
+## 许可与引用
+
+### 代码许可
+
+本项目源代码采用 **GNU Affero General Public License v3.0（AGPL-3.0-only）**，
+Copyright (C) 2026 AkiAki-7230。完整条款见根目录 [`LICENSE`](LICENSE)。
+
+### 模型许可
+
+`app/src/main/assets/yolo26n_depth.param`、`yolo26n_depth.bin` 及元数据由
+Ultralytics YOLO26n-depth 导出，遵循 **AGPL-3.0**；训练配置记录在
+`yolo26n_depth_metadata.yaml`。公开分发或对外提供包含该权重的应用时，
+需同时履行 AGPL-3.0 的相应义务。
+
+### 第三方组件
+
+| 组件 | 版本 | 许可 |
+| --- | --- | --- |
+| NCNN | 随 `third_party/ncnn` 提供 | BSD-3-Clause |
+| OpenCV | 4.10.0（需自行补齐，见构建章节） | Apache-2.0 |
+| AndroidX / CameraX | 见 `app/build.gradle` | Apache-2.0 |
+
+### 引用
+
+若在论文、报告或课程材料中引用本工作，可使用：
+
+> DepthMobile：面向行人辅助避障的结构化实时等深线图（RTIG）原型，2026。
